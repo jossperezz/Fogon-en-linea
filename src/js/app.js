@@ -13,7 +13,7 @@ const app = Vue.createApp({
 
 // Componentes base (más adelante los llenamos con contenido)
 app.component("home", {
-    template: '<div><h2 class="text-center">Bienvenida a Fogón en Línea</h2></div>'
+    template: '<div><h2 class="text-center">Bienvenid@ a Fogón en Línea</h2></div>'
 });
 
 app.component("recetas", {
