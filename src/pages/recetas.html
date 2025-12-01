@@ -30,9 +30,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ receta.nombre }}</h5>
                         <p class="text-muted">{{ receta.descripcion }}</p>
-                        <button class="btn btn-primary w-100">
-                            Ver receta
-                        </button>
+                        <button class="btn btn-warning w-100 mb-2" @click="guardarFavorito(receta)">
+    ⭐ Guardar en favoritos
+</button>
+
+<button class="btn btn-primary w-100">
+    Ver receta
+</button>
+
                     </div>
                 </div>
             </div>
@@ -45,7 +50,9 @@
     <script>
         const app = Vue.createApp({
             data() {
+                
                 return {
+                    
                     recetas: [
                         {
                             id: 1,
@@ -59,15 +66,28 @@
                             descripcion: "Fácil, rápido y delicioso.",
                             imagen: "../img/Logo.png"
                         },
-                        {
-                            id: 3,
-                            nombre: "Pasta cremosa",
-                            descripcion: "Con salsa blanca y pollo.",
-                            imagen: "../img/Logo.png"
-                        }
-                    ]
+                        
+                            {
+                                id: 3,
+                                nombre: "Pasta cremosa",
+                                descripcion: "Con salsa blanca y pollo.",
+                                imagen: "../img/Logo.png"
+                            }
+                        ], // Added a comma here to close the recetas array
+                        methods: {
+    guardarFavorito(receta) {
+        let favs = JSON.parse(localStorage.getItem("favoritos")) || [];
+        favs.push(receta);
+        localStorage.setItem("favoritos", JSON.stringify(favs));
+        alert("Receta guardada en favoritos ⭐");
+    }
+}
+
+                        
+                    
                 };
             }
+            
         });
 
         app.mount("#app");
