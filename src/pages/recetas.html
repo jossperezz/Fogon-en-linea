@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página</title>
+    <title>Recetas - Fogón en Línea</title>
 
     <!-- Bootstrap -->
     <link 
@@ -14,15 +14,64 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-light bg-light px-3">
+    <nav class="navbar navbar-light bg-light px-3 shadow-sm">
         <a href="../../index.html" class="navbar-brand">
             <img src="../img/Logo-head.png" width="40"> Fogón en Línea
         </a>
     </nav>
 
-    <main class="container py-5">
-        <h2 class="text-center">Contenido en construcción</h2>
-    </main>
+    <div id="app" class="container py-5">
+        <h2 class="text-center mb-4">Recetas disponibles 🍳</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4" v-for="receta in recetas" :key="receta.id">
+                <div class="card shadow-sm">
+                    <img :src="receta.imagen" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ receta.nombre }}</h5>
+                        <p class="text-muted">{{ receta.descripcion }}</p>
+                        <button class="btn btn-primary w-100">
+                            Ver receta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    recetas: [
+                        {
+                            id: 1,
+                            nombre: "Arepas rellenas",
+                            descripcion: "Arepas doraditas con queso fundido.",
+                            imagen: "../img/Logo.png"
+                        },
+                        {
+                            id: 2,
+                            nombre: "Arroz con pollo",
+                            descripcion: "Fácil, rápido y delicioso.",
+                            imagen: "../img/Logo.png"
+                        },
+                        {
+                            id: 3,
+                            nombre: "Pasta cremosa",
+                            descripcion: "Con salsa blanca y pollo.",
+                            imagen: "../img/Logo.png"
+                        }
+                    ]
+                };
+            }
+        });
+
+        app.mount("#app");
+    </script>
 
 </body>
 </html>
